@@ -1,0 +1,173 @@
+body {
+  background: url('/gradient-blue-abstract-background-smooth-dark-blue-with-black-vignette-studio.jpg') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+}
+body.home-page {
+  background: url('/14_1sas12das.jpg') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+}
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-y: auto;
+    }
+ .validator {
+      transition: border-color 0.3s ease;
+    }
+    
+    .validator:valid {
+      border-color: #10b981 !important; /* Green border for valid input */
+    }
+    
+    .validator:invalid:not(:focus):not(:placeholder-shown) {
+      border-color: #ef4444 !important; /* Red border for invalid input */
+    }
+    
+    .validator-hint {
+      color: #9ca3af;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+     
+/* Custom CSS to ensure full width distribution and seamless loop */
+:root {
+  --card-width: 160px; /* Define the fixed width of each carousel card */
+  --gap: 1rem;       /* Define the gap between cards (1rem = 16px by default) */
+  --num-cards-in-set: 6; /* IMPORTANT: Number of unique cards in your original set */
+  
+  /* Calculate the total width of one complete set of cards (including gaps) */
+  --total-set-width: calc(var(--card-width) * var(--num-cards-in-set) + var(--gap) * (var(--num-cards-in-set) - 1));
+}
+
+/* --- Section Styling (using the new ID) --- */
+#top-exporters-section {
+    width: 100%; /* Ensures the section itself always spans the full available width */
+    padding-top: 3rem; /* Example padding */
+    padding-bottom: 3rem; /* Example padding */
+    box-sizing: border-box; /* Crucial for padding not to add to total width */
+    /* If you want the background color of the section to span full width, you'd define it here */
+    /* background-color: #f8f8f8; */ 
+}
+
+/* --- Container Behavior for Content (Addressing the horizontal expansion) --- */
+/*
+ * IMPORTANT: To override Tailwind's default 'container' behavior,
+ * you need to increase specificity or use !important if absolutely necessary
+ * (though avoiding !important is generally preferred).
+ *
+ * The easiest way to override Tailwind's `max-width` applied by its `container` class
+ * is often to add your custom CSS *after* Tailwind's base styles or use `!important`.
+ *
+ * Since your HTML has `class="container mx-auto px-4 py-12"`, Tailwind applies its rules.
+ * We'll use a more specific selector like `body .container` or just ensure this CSS
+ * comes *after* Tailwind's imports.
+ */
+.container {
+    width: 100%; /* Always try to take 100% of its parent's width */
+    
+    /* CHOOSE ONE OF THESE OPTIONS FOR MAX-WIDTH: */
+    /* Option 1: No max-width for true edge-to-edge content (excluding padding) */
+    max-width: none !important; /* Use !important to strongly override Tailwind's default max-width */
+    
+    /* Option 2: A very large max-width (e.g., 2560px for 4K displays) */
+    /* max-width: 2560px; /* Example: Widen the content area significantly, but still capped */
+    /* If you choose this, you might not need !important if your CSS loads after Tailwind's. */
+
+    margin-left: auto;   /* Retain centering */
+    margin-right: auto;  /* Retain centering */
+    box-sizing: border-box; /* Include padding in element's total width */
+
+    /* Tailwind's `px-4 py-12` already apply padding.
+       If you want custom padding behavior and to override Tailwind: */
+    padding-left: 1rem !important;  /* Override px-4 (1rem) on small screens */
+    padding-right: 1rem !important; /* Override px-4 (1rem) on small screens */
+    padding-top: 3rem !important;   /* Override py-12 (3rem) */
+    padding-bottom: 3rem !important;/* Override py-12 (3rem) */
+}
+
+/* Adjust padding on larger screens. Use !important if needed to override Tailwind. */
+@media (min-width: 640px) { /* sm breakpoint */
+    .container {
+        padding-left: 1.5rem !important; /* Example: px-6 equivalent */
+        padding-right: 1.5rem !important;
+    }
+}
+@media (min-width: 1024px) { /* lg breakpoint */
+    .container {
+        padding-left: 2rem !important; /* Example: px-8 equivalent */
+        padding-right: 2rem !important;
+    }
+}
+@media (min-width: 1280px) { /* xl breakpoint */
+    .container {
+        padding-left: 3rem !important; /* Even more padding for very wide screens */
+        padding-right: 3rem !important;
+    }
+}
+/* You can add further breakpoints (e.g., 2xl: 1536px) if your design requires */
+
+
+/* --- CAROUSEL COMPONENTS --- */
+
+.carousel-wrapper {
+  overflow: hidden; 
+  position: relative; 
+  width: 100%; /* Ensures the wrapper takes full width available in its parent (.container) */
+}
+
+.carousel-track {
+  display: flex; 
+  gap: var(--gap); 
+  animation: scroll-left 20s linear infinite; 
+}
+
+.carousel-card {
+  flex: 0 0 auto; 
+  border-radius: 0.5rem; 
+  overflow: hidden; 
+  aspect-ratio: 4/3; /* Fixes card aspect ratio for consistent layout. Adjust as needed. */
+  
+  /* Use clamp for responsive width based on viewport size, but don't exceed max-width.
+     The calculations are slightly more complex to account for:
+     - 100vw: total viewport width
+     - 2 * (container padding): total padding of the parent container
+     - N * var(--gap): total gaps between cards (e.g., if you want 4 cards visible, 3 gaps)
+     - The '4' or '3.5' at the end is the approximate number of cards you want to fit on screen.
+  */
+  width: clamp(
+    120px, /* Minimum card width */
+    calc((100vw - (2 * var(--gap)) - (var(--gap) * 3) - 6rem) / 4), /* Responsive width aiming for 4 cards, adjusting for container padding and gaps */
+    var(--card-width) /* Maximum card width (160px) */
+  ); 
+  /* Explanation for clamp calc:
+     - (2 * var(--gap)): Accounts for gaps at the start/end of the visible track (if any, or general buffer)
+     - (var(--gap) * 3): If you're aiming for 4 cards visible, there are 3 gaps between them.
+     - 6rem: This is a robust way to account for the **total horizontal padding of the `.container`**
+             at larger screen sizes (e.g., 3rem left + 3rem right from `padding-left: 3rem`).
+             Adjust this `6rem` value based on the maximum padding you set on your `.container`.
+     - / 4: Divides the remaining space by the number of cards you want to see. Adjust this to 3, 3.5, 4, 5 etc.
+  */
+}
+
+.carousel-card img {
+  width: 100%; 
+  height: 100%; 
+  display: block; 
+  object-fit: cover; 
+  object-position: center; 
+  border-radius: 0.5rem; 
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0); 
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--total-set-width))); 
+  }
+}

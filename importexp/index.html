@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="/importexp/style.css" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script type="module" src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"></script>
+
+
+</head>
+<body class="home-page">
+<!-- header -->
+ 
+<header class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white body-font">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+ <a  href="/home.html" class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+  </svg>
+  <span class="ml-3 text-xl">MAGS Export&amp;Import</span>
+</a>
+
+    <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+<a href="" class="mr-5 hover:text-blue-900 inline-flex flex-col items-center text-sm">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house-icon mb-1">
+    <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
+    <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+  </svg>
+  Home
+</a>
+
+
+      <a href="" class="mr-5 hover:text-blue-900 inline-flex flex-col items-center text-sm">
+  <!-- Icon Above -->
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info mb-1">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M12 16v-4"/>
+    <path d="M12 8h.01"/>
+  </svg>
+
+  <!-- Text -->
+  About us
+</a>
+
+   <a href="" class="mr-5 hover:text-blue-900 inline-flex flex-col items-center text-sm">
+  <!-- Icon Above -->
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail mb-1">
+    <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
+    <rect x="2" y="4" width="20" height="16" rx="2"/>
+  </svg>
+
+  <!-- Text -->
+  Contact us
+</a>
+
+     <!-- Wrapper div for relative positioning -->
+<!-- Alpine.js Dropdown Menu with Icon Above Text and Compact Left-Aligned Dropdown -->
+<div x-data="{ open: false }" class="relative inline-block text-center">
+  <!-- Trigger Button -->
+  <button
+    @click="open = !open"
+    class="text-white hover:text-blue-900 inline-flex flex-col items-center px-2 py-1 focus:outline-none"
+  >
+    <!-- Icon Above -->
+    <svg
+      class="mb-1 h-5 w-5"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h18v4H3zM3 7v13h18V7M16 21v-4M8 21v-4" />
+    </svg>
+
+    <!-- Text -->
+    <span class="text-sm">Products</span>
+  </button>
+
+  <!-- Dropdown -->
+  <div
+    x-show="open"
+    @click.away="open = false"
+    x-transition
+    class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-40 rounded-md border border-gray-200 bg-white shadow-lg z-50 text-left"
+  >
+    <a href="#" class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left">Storefront</a>
+    <a href="#" class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left">Warehouse</a>
+    <a href="#" class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left">Stock</a>
+    <button
+      type="button"
+      class="block w-full px-4 py-2 text-sm text-red-700 hover:bg-red-50 text-left"
+    >Delete</button>
+  </div>
+</div>
+
+    </nav>
+   
+  </div>
+</header>
+<!-- hero -->
+<hero class="bg-white text-white dark:bg-gray-900 dark:text-white body-font">
+  <section class="bg-transparent relative">
+    <!-- Background Image Container with Overlay -->
+    <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: url('https://images.unsplash.com/photo-1590880449155-b54f958ce314?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHNoaXB8ZW58MHx8MHx8fDA%3D');">
+      <div class="absolute inset-0 bg-black opacity-50"></div>
+    </div>
+    
+    <!-- Content Container -->
+    <div class="relative z-10 max-w-screen-xl px-4 py-16 mx-auto lg:py-24">
+      <div class="max-w-2xl">
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-white dark:text-white">"Quality trust, solution."</h1>
+        
+        <p class="max-w-2xl mb-6 font-light text-white dark:text-white lg:mb-8 md:text-lg lg:text-xl">MAGS Import&Export have your back</p>
+        
+        <div class="flex flex-wrap gap-4">
+          <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-gray-900 rounded-lg hover:bg-gray-800 active:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800 dark:active:bg-gray-700 dark:focus:ring-gray-700">
+            Get started
+            <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+          </a>
+          
+          <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center border rounded-lg bg-gray-900 hover:bg-gray-800 active:bg-gray-700 text-white focus:ring-4 focus:ring-gray-300 border-gray-900 dark:bg-gray-900 dark:text-white dark:border-gray-900 dark:hover:bg-gray-800 dark:active:bg-gray-700 dark:focus:ring-gray-700">
+            <svg class="w-5 h-5 mr-2" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            Speak to Sales
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</hero>
+<!-- approvals -->
+<section class=" bg-transparent text-gray-600 body-font">
+  <div class="container px-5 py-12 mx-auto">
+    <span class="flex items-center my-6">
+  <h1 class="shrink-0 pe-4 text-3xl font-bold text-gray-800 dark:text-gray-900">
+    Our Authenticity
+  </h1>
+  <span class="h-px flex-1 bg-gray-300 dark:bg-gray-600"></span>
+</span>
+    <div class="flex flex-wrap -m-4 text-center">
+      <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+  <div class="px-4 py-6 rounded-lg flex flex-col items-center">
+    <img src="/importexp/logos/National-Emblem-01.svg" alt="MSME Logo" class="w-32 h-32 mb-4 object-contain">
+    <p class="leading-relaxed text-center">GST</p>
+  </div>
+</div>
+  <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+  <div class="px-4 py-6 rounded-lg flex flex-col items-center">
+    <img src="MSME_L.png" alt="MSME Logo" class="w-32 h-32 mb-4 object-contain">
+    <p class="leading-relaxed text-center">MSME</p>
+  </div>
+</div>
+      <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+  <div class="px-4 py-6 rounded-lg flex flex-col items-center">
+    <img src="/importexp/logos/apeda-seeklogo.svg" alt="APEDA Logo" class="w-32 h-32 mb-4 object-contain">
+    <p class="leading-relaxed text-center">APEDA</p>
+  </div>
+</div>
+      <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+  <div class="px-4 py-6 rounded-lg flex flex-col items-center">
+    <img src="/importexp/MSME.svg" alt="MSME Logo" class="w-32 h-32 mb-4 object-contain">
+    <p class="leading-relaxed text-center">Users</p>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+<!-- products -->
+<section class="bg-transparent text-gray-900 body-font min-h-screen w-full">
+  <div class="w-full px-4 py-12 mx-auto">
+
+    <!-- Heading -->
+    <div class="flex items-center mb-10">
+      <h1 class="shrink-0 pe-4 text-3xl font-bold text-gray-800 dark:text-gray-900">
+        Products
+      </h1>
+      <div class="h-px flex-1 bg-gray-300 dark:bg-gray-600"></div>
+    </div>
+
+    <!-- Products Container -->
+    <div class="space-y-10">
+
+      <!-- Dehydrated Products Heading + Grid inside same container -->
+
+
+
+<div class="bg-white/50 rounded-xl p-4 w-full max-w-none">
+  <div class="flex items-center mb-8">
+    <h1 class="shrink-0 pe-4 sm:text-3xl text-2xl font-medium title-font text-gray-900">
+      Dehydrated Products
+    </h1>
+  </div>
+   
+  <!-- Products Grid -->
+  <div class="products-grid flex overflow-x-auto sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-3 snap-x snap-mandatory px-1 pb-4">
+         
+    <!-- Product Card -->
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Dehydrated Garlic Powder"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/dehydrated-garlic-powder.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Dehydrated Garlic Powder
+    </h2>
+  </div>
+</a>
+
+    <!-- Additional Product Cards for demonstration -->
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Dehydrated Onion Flakes"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/onion flakes.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Dehydrated Onion Flakes
+    </h2>
+  </div>
+</a>
+
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Dehydrated Garlic Flakes"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/dehydrated-garlic-flakes-500x500.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Dehydrated Garlic Flakes
+    </h2>
+  </div>
+</a>
+
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Dehydrated Tomato Powder"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/tomato-powder-500x500.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Dehydrated Tomato Powder
+    </h2>
+  </div>
+</a>
+
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Dehydrated Potato Flakes"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/potatao.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="potato.webp">
+      Dehydrated Potato Flakes
+    </h2>
+  </div>
+</a>
+
+   <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Dehydrated Ginger Powder"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/pl111280209-dehydrated_dried_organic_ginger_root_powder_10_moisture.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Dehydrated Ginger powder
+    </h2>
+  </div>
+</a>
+       
+  </div>
+</div>
+
+      <!-- Another products-grid block -->
+   
+
+<div class="bg-white/50 rounded-xl p-4 w-full max-w-none">
+  <div class="flex items-center mb-8">
+    <h1 class="shrink-0 pe-4 sm:text-3xl text-2xl font-medium title-font text-gray-900">
+   Medical Equipments
+    </h1>
+  </div>
+   
+  <!-- Products Grid -->
+  <div class="products-grid flex overflow-x-auto sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-3 snap-x snap-mandatory px-1 pb-4">
+         
+    <!-- Product Card -->
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Glucometer"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/Mid-Control-Solution-3.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Glucometer
+    </h2>
+  </div>
+</a>
+
+    <!-- Additional Product Cards for demonstration -->
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="blodd pressure unit"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/bp.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+     Blood Pressure Unit
+    </h2>
+  </div>
+</a>
+
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Disposable Syringes"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/disposable-syringes-500x500.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Disposable Syringes
+    </h2>
+  </div>
+</a>
+
+   <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Thermometers"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/thermometers.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Thermometers
+    </h2>
+  </div>
+</a>
+
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Wheelchair"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/electrical-wheelchair-g01-500x500.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      WheelChairs
+    </h2>
+  </div>
+</a>
+
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="oximeter"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/ut100-pulse-oximeter.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Oximeters
+    </h2>
+  </div>
+</a>
+       
+  </div>
+</div>
+
+
+<div class="bg-white/50 rounded-xl p-4 w-full max-w-none">
+  <div class="flex items-center mb-8">
+    <h1 class="shrink-0 pe-4 sm:text-3xl text-2xl font-medium title-font text-gray-900">
+    Leather Products
+    </h1>
+  </div>
+   
+  <!-- Products Grid -->
+  <div class="products-grid flex overflow-x-auto sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-3 snap-x snap-mandatory px-1 pb-4">
+         
+    <!-- Product Card -->
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Genuine Leather"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/genuine leather.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Genuine Leather
+    </h2>
+  </div>
+</a>
+
+    <!-- Additional Product Cards for demonstration -->
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Full Grain Leather"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/buffalo-full-grain-leather-.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Full Grain Leather
+    </h2>
+  </div>
+</a>
+
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Top Grain Leather"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/shblog-26-top-grain-leather-48-814293.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Top Grain Leather
+    </h2>
+  </div>
+</a>
+
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Split Grain Leather"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/split grain.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Split Grain Leather
+    </h2>
+  </div>
+</a>
+
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Bonded Leather"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/1-bond-leather-top-banner.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Bonded Leather
+    </h2>
+  </div>
+</a>
+
+    <a href="#" class="min-w-[120px] w-[38vw] sm:w-full snap-start flex-shrink-0 sm:flex-shrink group p-2 rounded-lg shadow-gray-300 shadow-md hover:shadow-lg bg-white hover:bg-gray-50 transform transition-all duration-300 hover:-translate-y-1">
+  <div class="relative w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+    <img 
+      alt="Denver Leather"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      src="images/denver.webp"
+      loading="lazy"
+    >
+  </div>
+  <div class="mt-2">
+    <h2 class="text-gray-900 title-font text-sm font-medium leading-tight group-hover:text-blue-600 transition-colors">
+      Denver Leather
+    </h2>
+  </div>
+</a>
+       
+  </div>
+</div>
+
+
+
+</section>
+
+<section id="top-exporters-section" class="text-gray-600 body-font">
+ <div class="container mx-auto px-4 py-12">
+  <div class="flex items-center mb-10">
+   <h1 class="shrink-0 pe-4 text-3xl font-bold text-gray-800 dark:text-gray-900">
+    Top Exporters
+   </h1>
+   <div class="h-px flex-1 bg-gray-300 dark:bg-gray-600"></div>
+  </div>
+  <div class="carousel-wrapper overflow-hidden relative">
+   <div class="carousel-track flex gap-4">
+     <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/us.png" alt="United States"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/in.png" alt="India"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/gb.png" alt="United Kingdom"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/fr.png" alt="France"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/de.png" alt="Germany"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/jp.png" alt="Japan"></div>
+
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/ca.png" alt="Canada"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/au.png" alt="Australia"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/it.png" alt="Italy"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/za.png" alt="South Africa"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/kr.png" alt="South Korea"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/br.png" alt="Brazil"></div>
+     <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/us.png" alt="United States"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/in.png" alt="India"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/gb.png" alt="United Kingdom"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/fr.png" alt="France"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/de.png" alt="Germany"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/jp.png" alt="Japan"></div>
+
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/ca.png" alt="Canada"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/au.png" alt="Australia"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/it.png" alt="Italy"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/za.png" alt="South Africa"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/kr.png" alt="South Korea"></div>
+    <div class="carousel-card shadow-md shadow-gray-400 rounded-lg overflow-hidden"><img src="https://flagcdn.com/w320/br.png" alt="Brazil"></div>
+  </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- features -->
+<section class="text-gray-600 body-font">
+  <div class="container px-4 sm:px-5 py-16 sm:py-24 mx-auto max-w-5xl sm:max-w-none">
+<span class="flex items-center my-6">
+  <h1 class="shrink-0 pe-4 text-3xl font-bold text-gray-800 dark:text-gray-900">
+    Why Choose Us?
+  </h1>
+  <span class="h-px flex-1 bg-gray-300 dark:bg-gray-600"></span>
+</span>
+    <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
+      <div class="p-4 md:w-1/3 flex flex-col sm:flex-row">
+  <!-- Lottie container with unique ID -->
+  <div class="w-16 h-16 sm:w-20 sm:h-20 mb-4 flex-shrink-0 mx-auto sm:mx-0">
+    <dotlottie-player
+      id="lottie-transport"
+      src="https://lottie.host/670ba1aa-578e-4624-92e8-217d7201df1d/clnVTPwZu8.lottie"
+      background="transparent"
+      speed="1"
+      style="width: 100%; height: 100%;"
+      loop
+      autoplay>
+    </dotlottie-player>
+  </div>
+  <!-- Text content -->
+  <div class="flex-grow sm:pl-6 text-center sm:text-left">
+    <h2 class="text-gray-900 text-lg title-font font-medium mb-2">Fast Transportation</h2>
+    <!-- Mobile text (shorter) -->
+    <p class="leading-relaxed text-base block sm:hidden">
+      We deliver faster transportation solutions with advanced logistics and optimized routes for quick, safe delivery.
+    </p>
+    <!-- Desktop text (full) -->
+    <p class="leading-relaxed text-base hidden sm:block">
+      Our company is committed to delivering faster transportation solutions that prioritize efficiency and reliability. By leveraging advanced logistics technology and optimized route planning, we ensure that goods and services reach their destinations quickly and safely.
+    </p>
+    <a class="mt-3 text-indigo-500 inline-flex items-center">
+      Learn More
+      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+        stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+        <path d="M5 12h14M12 5l7 7-7 7"></path>
+      </svg>
+    </a>
+  </div>
+</div>
+      <div class="p-4 md:w-1/3 flex flex-col sm:flex-row">
+  <div class="w-12 h-12 sm:w-12 sm:h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4 flex-shrink-0 mx-auto sm:mx-0">
+  <dotlottie-player
+    src="https://lottie.host/1ed5ae1f-b2df-4229-9d13-a688c4059727/j424znO0ZG.lottie"
+    background="transparent"
+    speed="1"
+    style="width: 100%; height: 100%"
+    loop
+    autoplay
+  ></dotlottie-player>
+</div>
+  <div class="flex-grow sm:pl-6 text-center sm:text-left">
+    <h2 class="text-gray-900 text-lg title-font font-medium mb-2">Quality Products</h2>
+    <!-- Mobile text (shorter) -->
+    <p class="leading-relaxed text-base block sm:hidden">
+      We deliver high-quality products that are carefully designed, sourced, and tested for durability and customer satisfaction.
+    </p>
+    <!-- Desktop text (full) -->
+    <p class="leading-relaxed text-base hidden sm:block">
+      At our company, we are committed to delivering products that meet the highest standards of quality and craftsmanship. Each item is carefully designed, sourced, and tested to ensure durability, performance, and customer satisfaction.
+    </p>
+    <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
+      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+        <path d="M5 12h14M12 5l7 7-7 7"></path>
+      </svg>
+    </a>
+  </div>
+</div>
+ <div class="p-4 md:w-1/3 flex flex-col sm:flex-row items-start">
+  <div class="inline-flex items-start justify-center mb-4 flex-shrink-0 mx-auto sm:mx-0">
+    <dotlottie-player
+      src="https://lottie.host/8f72cd5a-5745-438a-9235-fca222e29d57/dc8oCGFitz.lottie"
+      background="transparent"
+      speed="1"
+      style="width: 64px; height: 64px"
+      loop
+      autoplay
+    ></dotlottie-player>
+  </div>
+  <div class="flex-grow sm:pl-6 text-center sm:text-left">
+    <h2 class="text-gray-900 text-lg title-font font-medium mb-2">24/7 Customer Service</h2>
+    <!-- Mobile text (shorter) -->
+    <p class="leading-relaxed text-base block sm:hidden">
+      We offer 24/7 customer support because your needs don't follow a 9-to-5 schedule, and neither do we.
+    </p>
+    <!-- Desktop text (full) -->
+    <p class="leading-relaxed text-base hidden sm:block">
+      At our company, we prioritize our customers above all else. That's why we offer 24/7 support and services—because your needs don't follow a 9-to-5 schedule, and neither do we. Whether it's day or night, We answer your questions, and provide the assistance you deserve.
+    </p>
+    <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
+      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+        stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+        <path d="M5 12h14M12 5l7 7-7 7"></path>
+      </svg>
+    </a>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+<!-- footer -->
+<footer class="bg-white lg:grid lg:grid-cols-5 dark:bg-gray-900">
+  <div class="relative block h-24 lg:col-span-1 lg:h-full">
+    <img
+      src="https://images.unsplash.com/photo-1642370324100-324b21fab3a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1548&q=80"
+      alt="Footer Image"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+  </div>
+
+  <div class="px-4 py-16 sm:px-6 lg:col-span-4 lg:px-8">
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
+      <div>
+        <p>
+          <span class="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+            Contact Us
+          </span>
+
+          <a
+            href="tel:+917843901664"
+            class="block text-2xl font-medium text-gray-900 hover:opacity-75 sm:text-3xl dark:text-white"
+          >
+            +91 7843-901-664
+          </a>
+        </p>
+
+        <ul class="mt-8 space-y-1 text-sm text-gray-700 dark:text-gray-200">
+          <li>Mon - Fri: 9am - 6pm</li>
+          <li>Sat - Sun: 10am - 4pm</li>
+        </ul>
+
+        <ul class="mt-8 flex gap-6">
+          <li>
+            <a
+              href="https://facebook.com/yourpage"
+              rel="noreferrer"
+              target="_blank"
+              class="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
+              aria-label="Facebook"
+            >
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill-rule="evenodd"
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://instagram.com/yourprofile"
+              rel="noreferrer"
+              target="_blank"
+              class="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
+              aria-label="Instagram"
+            >
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill-rule="evenodd"
+                  d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/yourhandle"
+              rel="noreferrer"
+              target="_blank"
+              class="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
+              aria-label="Twitter"
+            >
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.482A4.072 4.072 0 012 9.713v.051a4.106 4.106 0 003.292 4.022 4.093 4.093 0 01-1.852.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407 11.616 11.616 0 008.29 20.251z"
+                />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8">
+        <div>
+          <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+            Quick Links
+          </h2>
+          <ul class="text-gray-600 dark:text-gray-400">
+            <li class="mb-4">
+              <a href="#" class="hover:underline">About Us</a>
+            </li>
+            <li class="mb-4">
+              <a href="#" class="hover:underline">Services</a>
+            </li>
+            <li class="mb-4">
+              <a href="#" class="hover:underline">Blog</a>
+            </li>
+            <li class="mb-4">
+              <a href="#" class="hover:underline">Contact</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+            Newsletter
+          </h2>
+          <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+            Subscribe to get the latest updates and offers.
+          </p>
+          <form class="flex flex-col sm:flex-row gap-2">
+            <input
+              type="email"
+              placeholder="Your email"
+              required
+              class="w-full rounded-md border border-gray-300 px-4 py-2 text-sm text-gray-900 placeholder-gray-500 focus:border-indigo-600 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400"
+            />
+            <button
+              type="submit"
+              class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-1"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
+<!-- Lazy Load Script -->
+<script>
+ document.addEventListener("DOMContentLoaded", () => {
+  const player = document.getElementById("lottie-transport");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        player.play();
+      } else {
+        player.pause(); // or player.stop(); if you want it to reset
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(player);
+});
+
+
+  // Initialize Lenis with your preferred options
+  const lenis = new Lenis({
+    duration: 1.2,          // scroll animation duration in seconds
+    easing: t => t,         // linear easing (you can customize)
+    smooth: true            // enable smooth scrolling
+  });
+
+  // RAF loop to update Lenis every frame
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Optional: Smooth scroll for anchor links (#section)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        lenis.scrollTo(target);
+      }
+    });
+  });
+const track = document.querySelector('.carousel-track');
+const cards = Array.from(track.children); // Get all cards (original + duplicates)
+
+// Assuming you have exactly 6 unique cards in your original set,
+// and you've duplicated them in the HTML, so total cards = 12.
+const originalCardCount = 6; 
+
+// Calculate dimensions from the first card (all cards should have the same dimensions)
+const cardWidth = cards[0].offsetWidth;
+const gap = parseInt(getComputedStyle(track).gap) || 0;
+
+// Calculate the total width of ONE complete set of ORIGINAL cards including their gaps.
+// This is the distance we need to scroll before resetting.
+const distanceToScrollOneSet = (originalCardCount * cardWidth) + ((originalCardCount - 1) * gap);
+
+let currentScrollOffset = 0; // Tracks how much we've scrolled the track to the left
+let animationInterval; // To store the interval ID for clearing/pausing
+
+function startCarousel() {
+    // Set up the interval to trigger the animation
+    animationInterval = setInterval(moveCarousel, 2000); // Move every 2 seconds (adjust as needed)
+}
+
+function moveCarousel() {
+    // Increase the scroll offset by the width of one card + gap
+    // This makes the carousel move one card at a time
+    currentScrollOffset += (cardWidth + gap);
+
+    // Apply the transition for smooth animation
+    // Use 'ease-in-out' for Apple-like fluidity
+    track.style.transition = 'transform 0.8s ease-in-out'; // Animation duration (e.g., 0.8s)
+    track.style.transform = `translateX(-${currentScrollOffset}px)`;
+
+    // Listen for the 'transitionend' event to know when the current animation step is complete.
+    track.addEventListener('transitionend', function handler() {
+        // Remove the event listener to prevent multiple calls
+        track.removeEventListener('transitionend', handler);
+
+        // Check if we have scrolled past the equivalent of one full original set of cards.
+        // We use a small epsilon (1px) for floating point comparison robustness
+        if (currentScrollOffset >= distanceToScrollOneSet - 1) { 
+            // If we've scrolled one full set, instantly reset the track's position
+            // back to 0. This is where the seamless loop happens because
+            // the duplicated content is now at the 'start' visually.
+            track.style.transition = 'none'; // Disable transition for instant snap
+            track.style.transform = 'translateX(0)'; // Snap back to initial position
+
+            // Reset the scroll offset tracker
+            currentScrollOffset = 0;
+
+            // Optional: Re-enable transition with a tiny delay to ensure it's ready for the next animation
+            setTimeout(() => {
+                track.style.transition = 'transform 0.8s ease-in-out'; 
+            }, 50); 
+        }
+    }, { once: true }); // The { once: true } option ensures the listener is removed after it's called once
+}
+
+// Start the carousel when the script loads
+startCarousel();
+
+// Optional: Pause carousel on hover for better user experience
+const carouselWrapper = document.querySelector('.carousel-wrapper');
+
+carouselWrapper.addEventListener('mouseenter', () => {
+    clearInterval(animationInterval); // Stop the automatic movement
+});
+
+carouselWrapper.addEventListener('mouseleave', () => {
+    startCarousel(); // Restart the automatic movement
+});
+</script>
+
+
+</body>
+</html>
